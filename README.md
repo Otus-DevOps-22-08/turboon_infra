@@ -6,6 +6,7 @@ turboon Infra repository
 
 Для подключения к someinternalhost простой командой *ssh someinternalhost* надо добавить в ~/.ssh/config следующие строки:
 
+```
 Host bastion
         HostName 51.250.8.129
         Port 22
@@ -17,3 +18,4 @@ Host someinternalhost
         User appuser
         IdentityFile ~/.ssh/yac
         ProxyJump bastion
+```
