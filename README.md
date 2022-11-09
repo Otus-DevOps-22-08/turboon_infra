@@ -20,5 +20,7 @@ Host someinternalhost
         ProxyJump bastion
 ```
 # Данные для подключения
+```
 bastion_IP = 51.250.8.129
 someinternalhost_IP = 10.128.0.21
+```
