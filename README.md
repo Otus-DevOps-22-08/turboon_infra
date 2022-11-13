@@ -21,6 +21,11 @@ Host someinternalhost
 ```
 # Данные для подключения
 ```
+HW3
 bastion_IP = 51.250.8.129
 someinternalhost_IP = 10.128.0.21
+
+HW4
+testapp_IP = ********
+testapp_port = 9292
 ```
