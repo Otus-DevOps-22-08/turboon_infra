@@ -1,0 +1,14 @@
+#cloud-config
+users:
+  - name: turboon
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+     - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCmNEGyk1QrzQ4E3GOY4fFdYVUWxr+RhuW8qS1C9icM2SLtfDOxe6/rXV7DSmuyYm7Sd+HB/ygPUu6179u/lfrFJLEmsaXlqhAsguXLn0wyLZBlSgxyX6/lq23BkxOOym/jZxDoHvnHYm0OXHmo5I5J4IGxpgPcy6TxFQYWm1Lp2TLSaCMnW45E+Qho3C8mKcJu8zvvlUi/rW1EVOvaZvSkilWPzAuhE2h6NyxBXU2IXXnpbvxvGYGZYLyya17/SuGU6CXEYEeZFVBunx77aQXAO1e+x4edXLk7FfPDY6wTe9pPw//rQUgFx0zUOZgyGj0+C7Yx3VNkqap6biZ2lA4mVNF8JL7dpAJNKgJTEsTnBta3qNJwe5B1wbh9h0uJDXq+ZqqMJRHPj+nbxdpTqBVol8yIPSL4wkSFwuHRlGQOmRj4ZMfqkNjgsFivxoQjxcsgGA7thvlkkpITnDjEKIECZ3z1/zWd6/WtgKzqnciKuAkLJaTq6o9Jge9gKTVfV3s=
+
+runcmd:
+  - apt install -y git
+  - mkdir /opt/cloud-init && cd /opt/cloud-init
+  - git clone -b cloud-testapp https://github.com/Otus-DevOps-22-08/turboon_infra
+  - cd turboon_infra && chmod +x ./startup_script.sh &&./startup_script.sh
