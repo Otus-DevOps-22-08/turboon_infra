@@ -1,0 +1,18 @@
+[Unit]
+Description=Otus Reddit App
+
+After=mongod.service
+Requires=mongod.service
+
+[Service]
+Type=forking
+
+PIDFile=/var/run/otus-reddit-app.pid
+ExecStart=/usr/local/bin/puma -d --dir /usr/local/otus-reddit-app/reddit/
+ExecStop=/bin/kill `cat /var/run/otus-reddit-app.pid`
+
+Restart=always
+TimeoutSec=300
+
+[Install]
+WantedBy=multi-user.target

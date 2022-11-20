@@ -5,8 +5,8 @@
 			"service_account_key_file": "{{user `service_account_key_file`}}",
 			"folder_id": "{{user `folder_id`}}",
 			"source_image_family": "{{user `source_image_family`}}",
-			"image_name": "reddit-base-{{timestamp}}",
-			"image_family": "reddit-base",
+			"image_name": "reddit-full-{{timestamp}}",
+			"image_family": "reddit-full",
 			"ssh_username": "{{user `ssh_username`}}",
 			"use_ipv4_nat": true,
 			"platform_id": "standard-v1"
@@ -22,9 +22,23 @@
 			"type": "shell",
 			"script": "scripts/install_mongodb.sh",
 			"execute_command": "sudo {{.Path}}"
+		},
+		{
+			"type": "shell",
+			"script": "scripts/install_app.sh",
+			"execute_command": "sudo {{.Path}}"
+		},
+		{
+			"type": "file",
+			"source": "files/otus-reddit-app.service",
+			"destination": "/tmp/otus-reddit-app.service"
+		},
+		{
+			"type": "shell",
+			"inline": ["sudo cp /tmp/otus-reddit-app.service /etc/systemd/system/",
+				"sudo systemctl daemon-reload",
+			"sudo systemctl enable otus-reddit-app"]
 		}
-
-
 	]
 
 }
