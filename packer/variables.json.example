@@ -1,5 +1,5 @@
 {
-  "service_account_key_file": "./fake-service-account-key-file",
+  "service_account_key_file": "F:\\REPO\\turboon_infra\\packer\\yc_sakf.json",
   "folder_id": "example-folder-id",
   "source_image_family": "ubuntu-1604-lts",
   "ssh_username": "example-name"
