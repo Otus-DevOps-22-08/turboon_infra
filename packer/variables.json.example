@@ -1,0 +1,6 @@
+{
+  "service_account_key_file": "fake.json",
+  "folder_id": "example-folder-id",
+  "source_image_family": "ubuntu-1604-lts",
+  "ssh_username": "example-name"
+}

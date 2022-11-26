@@ -35,3 +35,14 @@ testapp_port = 9292
 ```
 yc compute instance create --name reddit-app --hostname reddit-app --memory=4 --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-1604-lts,size=10GB --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4,nat-address=51.250.86.89 --metadata serial-port-enable=1 --metadata-from-file user-data=.\cloud-init
 ```
+
+# Для создания образа reddit-full в Yandex.Cloud:
+* Установите packer
+* Укажите верные значения переменных в файле variables.json по примеру из файла variables.json.example
+* Выполните команду packer build -var-file=variables.json immutable.json
+
+# Команда для запуска приложения Reddit в Yandex.Cloud на основе собранного образа
+```
+yc compute instance create --name reddit-app --hostname reddit-app --memory=4 --create-boot-disk image-folder-id=b1gpuerdiskoiae481fe,image-family=reddit-full,size=10GB --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 --metadata serial-port-enable=1 --ssh-key /.ssh/yac.pub
+```
+Или см. скрипт create-reddit-vm.sh в папке config-scripts
