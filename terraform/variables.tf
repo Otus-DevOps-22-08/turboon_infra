@@ -1,32 +1,32 @@
 variable cloud_id {
-	description = "Cloud"
+  description = "Cloud"
 }
 
 variable folder_id {
-	description = "Folder"
+  description = "Folder"
 }
 
 variable zone {
-	description = "Zone"
-	default = "ru-central1-a"
+  description = "Zone"
+  default     = "ru-central1-a"
 }
 
 variable public_key_path {
-	description = "Path to the public key user for ssh access"
+  description = "Path to the public key user for ssh access"
 }
 
 variable image_id {
-	description = "Disk image"
+  description = "Disk image"
 }
 
 variable subnet_id {
-	description = "Subnet"
+  description = "Subnet"
 }
 
 variable network_id {
-        description = "Subnet"
+  description = "Subnet"
 }
 
 variable service_account_key_file {
-	description = "key .json"
+  description = "key .json"
 }
