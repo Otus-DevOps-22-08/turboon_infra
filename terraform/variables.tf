@@ -6,6 +6,11 @@ variable folder_id {
   description = "Folder"
 }
 
+variable instance_count {
+  description = "Number of instances"
+  default = 1
+}
+
 variable zone {
   description = "Zone"
   default     = "ru-central1-a"
