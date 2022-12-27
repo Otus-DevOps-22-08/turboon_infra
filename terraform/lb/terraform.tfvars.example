@@ -1,0 +1,8 @@
+cloud_id = "fdsgdfgsdfggsdf412fdfd"
+folder_id = "f34f32f93j2f9af"
+zone = "ru-central1-a"
+image_id = "fd8rc8est5392grgl0qd"
+public_key_path = "~/yandex.pub"
+subnet_id = "jk489gj3209gfjad"
+network_id = "agas3242lkfd09asdfok"
+service_account_key_file = "~/eto-json.json"
