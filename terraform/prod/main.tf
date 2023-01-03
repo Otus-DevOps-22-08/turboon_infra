@@ -11,7 +11,7 @@ module "app" {
   public_key_path 	= var.public_key_path
   subnet_id		= var.subnet_id
   app_image_id		= var.app_image_id
-
+  db_ip			= module.db.internal_db_ip_address
 }
 
 module "db" {
