@@ -6,6 +6,19 @@ variable folder_id {
   description = "Folder"
 }
 
+#variable db_ip {
+#  description = "IP address of database instance"
+#}
+
+variable db_image_id {
+  description = "Disk image id for VM with mongo installed "
+  default = "fd86d2fspsoo7ah1aaqr"
+}
+
+variable app_image_id {
+  description = "Disk image id for VM with Ruby installed"
+}
+
 variable instance_count {
   description = "Number of instances"
   default = 1
