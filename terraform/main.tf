@@ -6,51 +6,23 @@ provider "yandex" {
   version                  = "~> 0.35"
 }
 
+module "vpc" {
+  source 		= "./modules/vpc"
+}
 
-resource "yandex_compute_instance" "app" {
-  count = var.instance_count
+module "app" {
+  source 		= "./modules/app"
+  public_key_path 	= var.public_key_path
+#  subnet_id		= var.subnet_id
+  subnet_id		= module.vpc.app_subnet_id
+  app_image_id		= var.app_image_id
+  db_ip			= module.db.internal_db_ip_address
 
-  name = "reddit-app-${count.index + 1}"
+}
 
-  resources {
-    cores  = 2
-    memory = 2
-  }
-
-  boot_disk {
-    initialize_params {
-      image_id = var.image_id
-    }
-  }
-
-  network_interface {
-    subnet_id = var.subnet_id
-    nat       = true
-  }
-
-  scheduling_policy {
-    preemptible = true
-  }
-
-  metadata = {
-    ssh-keys = "ubuntu:${file(var.public_key_path)}"
-  }
-
-  connection {
-    type = "ssh"
-    #host = yandex_compute_instance.app.0.network_interface.0.nat_ip_address
-    host    = self.network_interface.0.nat_ip_address
-    user    = "ubuntu"
-    agent   = true
-    timeout = 15
-  }
-
-  provisioner "file" {
-    source      = "files/puma.service"
-    destination = "/tmp/puma.service"
-  }
-
-  provisioner "remote-exec" {
-    script = "files/deploy.sh"
-  }
+module "db" {
+  source 		= "./modules/db"
+  public_key_path 	= var.public_key_path
+  subnet_id		= module.vpc.app_subnet_id
+  db_image_id		= var.db_image_id
 }
