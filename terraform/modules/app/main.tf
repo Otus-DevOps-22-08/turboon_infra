@@ -41,24 +41,24 @@ resource "yandex_compute_instance" "app" {
     timeout = 15
   }
 
-  provisioner "file" {
-    source      = "${path.module}/files/puma.service"
-    destination = "/tmp/puma.service"
-  }
+#  provisioner "file" {
+#    source      = "${path.module}/files/puma.service"
+#    destination = "/tmp/puma.service"
+#  }
+#
+#  provisioner "file" {
+#    source      = "${path.module}/files/deploy.tmpl"
+#    destination = "/tmp/deploy.tmpl"
+#  }
 
-  provisioner "file" {
-    source      = "${path.module}/files/deploy.tmpl"
-    destination = "/tmp/deploy.tmpl"
-  }
-
-  provisioner "remote-exec" {
-   inline = [
-    "echo \"export DATABASE_URL=${var.db_ip}\" > /home/ubuntu/.bashrc",
-    "cat /tmp/deploy.tmpl | sed -e 's/{{db_ip}}/${var.db_ip}/' > /tmp/deploy.sh",
-    "chmod +x /tmp/deploy.sh",
-    "/tmp/deploy.sh"
-   ]
-  }
+#  provisioner "remote-exec" {
+#   inline = [
+#    "echo \"export DATABASE_URL=${var.db_ip}\" > /home/ubuntu/.bashrc",
+#    "cat /tmp/deploy.tmpl | sed -e 's/{{db_ip}}/${var.db_ip}/' > /tmp/deploy.sh",
+#    "chmod +x /tmp/deploy.sh",
+#    "/tmp/deploy.sh"
+#   ]
+#  }
 
   #provisioner "remote-exec" {
   # script = "/tmp/deploy.sh"

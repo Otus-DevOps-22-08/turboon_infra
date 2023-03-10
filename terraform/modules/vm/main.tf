@@ -1,11 +1,7 @@
-resource "yandex_compute_instance" "db" {
+resource "yandex_compute_instance" "vm" {
   #count = var.instance_count
-  name = "reddit-db"
+  name = var.vm_name
   allow_stopping_for_update = true
-
-  labels = {
-    tags = "reddit-db"
-  }
 
   resources {
     cores  = 2
@@ -14,7 +10,7 @@ resource "yandex_compute_instance" "db" {
 
   boot_disk {
     initialize_params {
-      image_id = var.db_image_id
+      image_id = var.image_id
     }
   }
 
@@ -33,7 +29,7 @@ resource "yandex_compute_instance" "db" {
 
   connection {
     type = "ssh"
-    host = yandex_compute_instance.db.network_interface.0.nat_ip_address
+    host = yandex_compute_instance.vm.network_interface.0.nat_ip_address
     #host    = self.network_interface.0.nat_ip_address
     user    = "ubuntu"
     agent   = true
