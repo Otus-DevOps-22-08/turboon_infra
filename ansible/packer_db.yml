@@ -1,10 +1,29 @@
 - name: Configure Mongodb
-  hosts: app
+  hosts: all
+  become: true
   tasks:
+
+  - name: Add an apt key by id from a keyserver
+    apt_key:
+      keyserver: keyserver.ubuntu.com
+      id: 4B7C549A058F8B6B
+
   - name: Add Mongodb repository
-    become: true
     apt_repository:
       repo: 'deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.2 multiverse'
       state: present
       update_cache: yes
-      key_url: https://www.mongodb.org/static/pgp/server-4.2.asc
+
+
+  - name: apt-get update
+    apt:
+      update_cache: yes
+
+  - name: Install Mongodb
+    apt:
+      name: mongodb-org
+
+  - name: Configure systemctl
+    systemd:
+      name: mongod
+      enabled: yes
