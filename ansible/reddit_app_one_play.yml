@@ -20,12 +20,12 @@
         dest: /home/ubuntu/db_config
       tags: app-tag
 
-    - name: Install git
-      become: true
-      ansible.builtin.package:
-        name: git, ruby-full, ruby-bundler, build-essential
-        state: present
-      tags: app-tag
+        #- name: Install git
+        #become: true
+        #ansible.builtin.package:
+        #name: git, ruby-full, ruby-bundler, build-essential
+        #state: present
+        #tags: app-tag
 
     - name: Fetch the latest version of application code
       git:
